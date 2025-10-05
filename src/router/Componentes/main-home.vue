@@ -503,7 +503,7 @@ expectativas!"</p>
 
   <!-- Footer -->
 <section class=" bg-preto2 border-t border-b border-t-preto2 border-b-preto2 text-white px-6 py-12 md:px-[400px]">
-  <div class="flex justify-between ">
+  <div class="flex justify-between">
       <div class="flex flex-col justify-between">
         <p class="md:text-lg">Portifólio de</p>
         <p class="font-montserrat font-bold text-lg md:text-xl">Apresentando Excelência</p>
@@ -524,7 +524,7 @@ expectativas!"</p>
 
       </div>
       </div>
-      <div class="flex flex-col md:text-lg font-montserrat space-y-2">
+      <div class="flex flex-col md:text-md text-sm font-montserrat space-y-2">
         <a href="#">Home</a>
         <a href="#">Serviços</a>
         <a href="#">Projectos</a>
