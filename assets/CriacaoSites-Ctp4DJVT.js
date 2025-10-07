@@ -1,0 +1,1 @@
+import{_ as a}from"./NavBar-BaA6aZ11.js";import{c as r,o as t,d as o,a as s,F as n}from"./index-C_ii0tDe.js";const l={__name:"CriacaoSites",setup(c){return(i,e)=>(t(),r(n,null,[o(a),e[0]||(e[0]=s("div",null,"Criação de Sites",-1))],64))}};export{l as default};
