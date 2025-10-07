@@ -1,1 +1,0 @@
-import{_ as e}from"./NavBar-CGVKdCuL.js";import{c as t,o as r,d as o,a as s,F as n}from"./index-CUvlHYyR.js";const l={__name:"CartaodeVisita",setup(i){return(m,a)=>(r(),t(n,null,[o(e),a[0]||(a[0]=s("div",null,"Cartao de visita",-1))],64))}};export{l as default};
