@@ -1,0 +1,1 @@
+import{N as a}from"./NavBar-HMQVpi7Q.js";import{c as r,o as s,d as t,a as o,F as n}from"./index-1BrTTUev.js";const u={__name:"FlyersEventos",setup(l){return(m,e)=>(s(),r(n,null,[t(a),e[0]||(e[0]=o("div",null,"Flyers",-1))],64))}};export{u as default};
