@@ -1,1 +1,0 @@
-import{N as e}from"./NavBar-BVlpr5Yx.js";import{c as t,o as r,d as o,a as s,F as n}from"./index-DM6JplA0.js";const d={__name:"CartaodeVisita",setup(i){return(l,a)=>(r(),t(n,null,[o(e),a[0]||(a[0]=s("div",null,"Cartao de visita",-1))],64))}};export{d as default};
