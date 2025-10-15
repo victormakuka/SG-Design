@@ -10,6 +10,7 @@ function irPara(path) {
 </script>
 <template>
   <GoogleAuth />
+  
   <!-- Footer -->
   <section
     class="bg-preto2 border-t border-b border-t-preto2 border-b-preto2 text-white px-6 py-12 md:px-[100px] lg:px-[400px]"

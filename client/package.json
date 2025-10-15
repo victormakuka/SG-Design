@@ -11,7 +11,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "npm run build && gh-pages -d dist",
+    "deploy": "pnpm run build && gh-pages -d dist -r https://github.com/victormakuka/SG-Design.git",
     "lint": "eslint . --fix",
     "format": "prettier --write src/"
   },
