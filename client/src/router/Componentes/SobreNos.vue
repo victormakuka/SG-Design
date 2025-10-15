@@ -1,5 +1,3 @@
-
-
 <template>
       <!-- Sobre SG Design -->
   <section class="border-b border-t border-b-preto border-t-preto text-white px-6 py-12" id="sobre">
@@ -119,3 +117,6 @@
     </div>
   </section>
 </template>
+
+<script setup>
+</script>

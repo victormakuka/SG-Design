@@ -1,14 +1,15 @@
 <script setup>
+import GoogleAuth from './GoogleAuth.vue';
 import { useRouter } from 'vue-router';
 const router = useRouter() // Instancia do roteador
 ;  
-
 
 function irPara(path) {
   router.push(path)
 }
 </script>
 <template>
+  <GoogleAuth />
   <!-- Footer -->
   <section
     class="bg-preto2 border-t border-b border-t-preto2 border-b-preto2 text-white px-6 py-12 md:px-[100px] lg:px-[400px]"
