@@ -2,7 +2,7 @@
 
 import ContactosSG from './ContactosSG.vue';
 import FooterSG from './FooterSG.vue';
-import NavBar from './navbar.vue';
+import NavBar from './NavBar.vue';
 import PassosCriacao from './PassosCriacao.vue';
 import ProjectoDestaques from './ProjectoDestaques.vue';
 import ServicoSG from './ServicoSG.vue';
@@ -20,7 +20,7 @@ import WhatsApp from './whatsApp.vue';
     <!-- Pagina inicial Home -->
 <section class="relative w-full h-[90vh] md:h-[80vh] overflow-hidden rounded-2xl pt-20 lg:pt-24">
   <picture>
-    <source media="(min-width: 1024px)" srcset="./web3.jpg" type="image/webp">
+    <source media="(min-width: 1024px)" srcset="" type="image/webp">
 
     <source media="(min-width: 640px)" srcset="" type="image/webp">
 
