@@ -1,4 +1,5 @@
 <script setup>
+
 import ContactosSG from './ContactosSG.vue';
 import FooterSG from './FooterSG.vue';
 import NavBar from './navbar.vue';
@@ -7,37 +8,55 @@ import ProjectoDestaques from './ProjectoDestaques.vue';
 import ServicoSG from './ServicoSG.vue';
 import SobreNos from './SobreNos.vue';
 import TestemunhoSG from './TestemunhoSG.vue';
+import WhatsApp from './whatsApp.vue';
 
 
 
 </script>
-<template>
-   <NavBar/>
-   
 
+
+<template>
+   <NavBar/>   
     <!-- Pagina inicial Home -->
-    <section class="bg-preto pt-20 lg:pt-20 relative z-0" id="home">
-      <img src="/web.jpg" alt="" class="opacity-20 w-full h-96 object-cover object-center" />
-      <div class="relative w-full"></div>
-      <img src="" alt="" class="w-full h-auto object-contain opacity-40" />
-      <div
-        class="absolute inset-0 flex flex-col justify-center items-start px-8 lg:px-[100px] py-8 lg:py-24"
-      >
-        <p
-          class="font-montserrat text-xl font-medium lg:text-4xl md:text-4xl text-white drop-shadow-lg"
-        >
-          Exiba sua marca com
-        </p>
-        <p
-          class="text-white text-xl font-montserrat font-bold tracking-wide lg:text-6xl md:text-5xl drop-shadow-lg"
-        >
-          designs impressionantes!
-        </p>
-      </div>
-    </section>
+<section class="relative w-full h-[90vh] md:h-[80vh] overflow-hidden rounded-2xl pt-20 lg:pt-24">
+  <picture>
+    <source media="(min-width: 1024px)" srcset="./web3.jpg" type="image/webp">
+
+    <source media="(min-width: 640px)" srcset="" type="image/webp">
+
+    <img src=""
+         alt="Design criativo e moderno"
+         loading="lazy"
+         class="w-full h-full object-cover">
+  </picture>
+  <div class="absolute inset-0 bg-black/40 flex items-center justify-center flex-col p-4 text-center"> 
+    <h1 class="text-3xl md:text-5xl font-bold bg-gradient-to-r from-yellow-400 via-white to-amarelo bg-clip-text text-transparent">
+      Criação de Identidade Visual
+    </h1>
+
+   <div class="space-x-4 space-y-4">
+      <button class="text-preto text-sm bg-amarelo rounded-3xl px-4 py-2 font-medium
+           transition-all duration-300 
+           hover:bg-amarelo hover:text-preto
+           sm:px-5 sm:py-2 md:px-6 md:py-2.5 lg:px-8 lg:py-3">
+Nossos Serviços 
+</button>
+
+  <button class="text-amarelo text-sm border border-amarelo rounded-3xl px-4 py-2 
+           transition-all duration-300 
+           hover:bg-amarelo hover:text-preto
+           sm:px-5 sm:py-2 md:px-6 md:py-2.5 lg:px-8 lg:py-3">
+Ver Projetos 
+</button>
+   </div>
+
+  </div>
+</section>
+
 
     <!-- Algumas Acções -->
-
+   <!-- WhatsApp -->
+<WhatsApp/>
     <section class="">
       <div
         class="border-b border-t border-t-preto2 border-b-preto2 lg:p-14 p-8 h-[100px] lg:h-[150px] lg:px-[400px] md:px-[150px]"
@@ -98,6 +117,7 @@ import TestemunhoSG from './TestemunhoSG.vue';
   </section>
 
 <!-- Sobre Nós -->
+
 <SobreNos/>
 
 

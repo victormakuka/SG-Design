@@ -1,13 +1,29 @@
-<template>   
+<script setup>
+import { useRouter } from 'vue-router';
+const router = useRouter() // Instancia do roteador
+;  
+
+
+function irPara(path) {
+  router.push(path)
+}
+</script>
+<template>
   <!-- Footer -->
   <section
-    class="bg-preto2 border-t border-b border-t-preto2 border-b-preto2 text-white px-6 py-12 md:px-[400px]"
+    class="bg-preto2 border-t border-b border-t-preto2 border-b-preto2 text-white px-6 py-12 md:px-[100px] lg:px-[400px]"
   >
-    <div class="flex justify-between">
-      <div class="flex flex-col justify-between">
-        <p class="md:text-lg">Portifólio de</p>
-        <p class="font-montserrat font-bold text-lg md:text-xl">Apresentando Excelência</p>
-        <div class="flex space-x-3">
+    <div class="flex flex-col md:flex-row md:justify-between md:items-start">
+      <!-- Coluna Esquerda -->
+      <div class="flex flex-col items-center md:items-start md:w-1/2">
+        <h1 class="font-montserrat text-amarelo text-2xl md:text-3xl lg:text-4xl font-medium">SG Design</h1>
+        <h2 class="text-sm md:text-base lg:text-lg mt-2 text-center md:text-left">
+          Transformamos ideias em marcas poderosas e criamos experiencias
+          visuais que conectam pessoas e negócios.
+        </h2>
+
+        <h1 class="text-amarelo font-montserrat font-medium mt-8 text-base md:text-lg lg:text-xl">Segue-nos</h1>
+        <div class="flex space-x-3 mt-6">
           <!-- Facebook -->
           <a
             href="https://web.facebook.com/profile.php?id=61577897327899"
@@ -21,7 +37,6 @@
               />
             </svg>
           </a>
-
           <!-- Instagram -->
           <a href="https://www.instagram.com/sgdesign.visual/" class="hover:text-amarelo">
             <svg role="img" viewBox="0 0 24 24" class="h-5" xmlns="http://www.w3.org/2000/svg">
@@ -32,7 +47,6 @@
               />
             </svg>
           </a>
-
           <!-- WhatsApp -->
           <a href="https://wa.me/244955861582" class="hover:text-amarelo">
             <svg role="img" viewBox="0 0 24 24" class="h-5" xmlns="http://www.w3.org/2000/svg">
@@ -45,17 +59,21 @@
           </a>
         </div>
       </div>
-      <div class="flex flex-col md:text-md text-sm font-montserrat space-y-2">
-        <a href="#home">Home</a>
-        <a href="#servicos">Serviços</a>
-        <a @click="irPara('/projectos-servicos')">Projectos</a>
-        <a href="#sobre">Sobre Nós</a>
-      </div>
-
-      <!-- 🔹 Linha inferior -->
-      <div class="border-t border-gray-700 mt-10 pt-4 text-center text-sm opacity-70">
-        © {{ new Date().getFullYear() }} SG Design. Todos os direitos reservados.
+      <!-- Coluna Direita -->
+      <div class="flex flex-col items-center md:items-end md:w-1/2 mt-10 md:mt-0">
+        <h1 class="text-amarelo font-montserrat font-medium text-base md:text-lg lg:text-xl">Links rápidos</h1>
+        <div class="flex flex-col md:items-end md:flex-col space-y-2 mt-4">
+          <a href="#" class="hover:text-amarelo text-sm md:text-base lg:text-lg">home</a>
+          <a href="#servicos" class="hover:text-amarelo text-sm md:text-base lg:text-lg">Serviços</a>
+          <a href="#sobre" class="hover:text-amarelo text-sm md:text-base lg:text-lg">Sobre</a>
+          <a @click="irPara('/projectos-servicos')" class="hover:text-amarelo cursor-pointer text-sm md:text-base lg:text-lg">Projetos</a>
+          <a href="#contactos" class="hover:text-amarelo text-sm md:text-base lg:text-lg">Contactos</a>
+        </div>
       </div>
     </div>
+    <!-- 🔹 Linha inferior -->
+    <div class="border-t border-gray-700 mt-10 pt-4 text-center text-xs md:text-sm lg:text-base opacity-70">
+      © {{ new Date().getFullYear() }} SG Design. Todos os direitos reservados.
+    </div>
   </section>
-</template>
+</template> 

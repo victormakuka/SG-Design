@@ -60,7 +60,7 @@
 
       <!-- Imagem + Caixa -->
       <div class="relative">
-        <div class="bg-amarelo h-[450px] rounded-xl shadow-lg w-full"></div>
+        <div class="rounded-xl shadow-lg overflow-hidden"> <img src="/Call.png" alt=""></div>
       </div>
     </div>
   </section>

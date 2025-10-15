@@ -30,15 +30,7 @@ Voltar aos Projetos</button>
 
     <!-- Galeria de identidade visual -->
     <section class="border-t-preto2 border-b-preto2 py-12 px-4 md:px-8 lg:px-16">
-      <div class="border">
-       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ">
-        <div><img src="/Karen Eventos [Recuperado]_Prancheta 1.png" alt="ksdl"></div>
-        <div><img src="/Karen mockups.png" alt="ksdl"></div>
-        <div><img src="/Bucket Hat Mockup PSD.png" alt="ksdl"></div>
-        <div><img src="/Karen Eventos [Recuperado]_Prancheta 1.png" alt="ksdl"></div>
-        
-       </div>
-      </div>
+     
     </section>
 </template>
 <!-- grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 -->

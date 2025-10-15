@@ -1,3 +1,17 @@
+<script setup>
+import { useRouter } from 'vue-router';
+const router = useRouter() // Instancia do roteador
+import { ref } from "vue";
+
+
+
+
+function irPara(path) {
+  router.push(path)
+}
+</script>
+
+
 <template>
      <!-- Testemunhos -->
   <section class="border-t border-b border-t-preto2 border-b-preto2 text-white px-6 py-12">
@@ -57,9 +71,8 @@
       </div>
     </div>
     <div class="flex justify-center items-center py-4">
-      <a
-        href="#"
-        class="border rounded-3xl border-amarelo px-2 py-2 text-amarelo text-xs md:text-md"
+      <a ref="" 
+        class="border rounded-3xl border-amarelo px-2 py-2 text-amarelo text-xs md:text-md cursor" @click="irPara('/TodosComentarios')"
         >Ver todos Comentários</a
       >
     </div>

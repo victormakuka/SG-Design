@@ -123,6 +123,17 @@ const routes = [
       keywords: 'serviços de design, branding Angola, criação de logo, web design, SG Design',
     },
   },
+  {
+    path: '/whatsApp',
+    name: 'whatsApp',
+    component: () => import('./Componentes/whatsApp.vue'),
+    
+  },
+  {
+    path: '/TodosComentarios',
+    name: 'TodosComentarios',
+    component: () => import('./Componentes/TodosComentarios.vue'),
+  }
 ]
 
 const router = createRouter({

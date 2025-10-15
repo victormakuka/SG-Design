@@ -111,7 +111,9 @@
 
         <!-- Imagem + Caixa -->
         <div class="relative">
-          <div class="bg-amarelo h-[450px] rounded-xl shadow-lg w-full"></div>
+          <div class="overflow-hidden rounded-xl shadow-lg w-full">
+            <img src="/Sobre.png" alt="" class="rounded-xl w-full h-auto" />
+          </div>
         </div>
       </div>
     </div>

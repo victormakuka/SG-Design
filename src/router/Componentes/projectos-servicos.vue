@@ -1,5 +1,6 @@
     
 <script setup>
+import WhatsApp from './whatsApp.vue';
 import Navbar from './navbar.vue';
 import { useRouter } from 'vue-router';
 const router = useRouter() // Instancia do roteador
@@ -30,107 +31,57 @@ function irPara(path) {
             </div>
         </div> 
     </section>
-
+<WhatsApp/>
     <!-- Serviços dos Projectos -->
    <section class="">
 
     <!-- Serviços -->
      <div class="p-6 md:p-10 xl:px-40">
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    
+ 
+
+
     <!-- Identidade Visual -->
-      <div class="bg-preto2 rounded-xl p-8 shadow-sm transition-all duration-300 hover:shadow-lg hover:border-red-600">
-  <p class="text-xl font-bold font-montserrat mb-4">Identidade Visual</p>
-  <p>Design de flyers impactantes para eventos, promoções e campanhas publicitárias.</p>
-
-  <div class="space-y-2 py-2">
-    <p class="flex items-center gap-2 ">
-      <svg xmlns="http://www.w3.org/2000/svg" class="text-amarelo h-5" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 6L9 17l-5-5"/></svg>
-      Logotipos Profissionais
-    </p>
-    <p class="flex items-center gap-2 ">
-      <svg xmlns="http://www.w3.org/2000/svg" class="text-amarelo h-5" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 6L9 17l-5-5"/></svg>
-      Manual da Marca
-    </p>
-    <p class="flex items-center gap-2 ">
-      <svg xmlns="http://www.w3.org/2000/svg" class="text-amarelo h-5" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 6L9 17l-5-5"/></svg>
-      Cores e Tipografia
-    </p>
-    
-  </div>
- <div class="flex items-center justify-center pt-4">
-  <button
-    class="text-amarelo text-sm border border-amarelo rounded-3xl px-4 py-2 
-           transition-all duration-300 
-           hover:bg-amarelo hover:text-preto
-           sm:px-5 sm:py-2 md:px-6 md:py-2.5 lg:px-8 lg:py-3" @click="irPara('/IdentidadeVisual')">
-    Ver todos projectos
-  </button>
-</div>
-
-</div>
+    <div class="bg-preto2 rounded-xl shadow-sm transition-all duration-300 hover:shadow-xl hover:shadow-amarelo hover:border-red-600 flex flex-col">
+      <div class="w-full">
+        <img src="/Edna.png" alt="" class="overflow-hidden rounded-lg w-full object-cover" />
+      </div>
+      <div class="p-8 flex flex-col flex-1 justify-between">
+        <div>
+          <p class="text-xl font-bold font-montserrat mb-4">Identidade Visual</p>
+          <p>Desenvolvimento de identidades visuais únicas que refletem a essência da sua marca, transmitindo credibilidade, propósito e estilo em cada detalhe.</p>
+        </div>
+        <div class="flex items-center justify-center pt-8">
+          <button
+            class="border border-amarelo text-amarelo rounded-3xl px-4 py-2 transition-all duration-300 hover:bg-amarelo hover:text-preto sm:px-5 sm:py-2 md:px-6 md:py-2.5 lg:px-8 lg:py-3 "
+            @click="irPara('/IdentidadeVisual')"
+          >
+            Ver todos projetos
+          </button>
+        </div>
+      </div>
+    </div>
 
     <!-- Flyers -->
-    <div class="bg-preto2 rounded-xl p-8 shadow-sm transition-all duration-300 hover:shadow-lg hover:border-red-600">
-  <p class="text-xl font-bold font-montserrat mb-4">Flyers & Banners</p>
-  <p>Design de flyers impactantes para eventos, promoções e campanhas publicitárias.</p>
-
-  <div class="space-y-2 py-2">
-    <p class="flex items-center gap-2 ">
-      <svg xmlns="http://www.w3.org/2000/svg" class="text-amarelo h-5" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 6L9 17l-5-5"/></svg>
-      Logotipos Profissionais
-    </p>
-    <p class="flex items-center gap-2 ">
-      <svg xmlns="http://www.w3.org/2000/svg" class="text-amarelo h-5" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 6L9 17l-5-5"/></svg>
-      Manual da Marca
-    </p>
-    <p class="flex items-center gap-2 ">
-      <svg xmlns="http://www.w3.org/2000/svg" class="text-amarelo h-5" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 6L9 17l-5-5"/></svg>
-      Cores e Tipografia
-    </p>
-  </div>
-   <div class="flex items-center justify-center pt-4">
-  <button
-    class="text-amarelo text-sm border border-amarelo rounded-3xl px-4 py-2 
-           transition-all duration-300 
-           hover:bg-amarelo hover:text-preto
-           sm:px-5 sm:py-2 md:px-6 md:py-2.5 lg:px-8 lg:py-3" @click="irPara('/FlyersEventos')">
-    Ver todos projectos
-  </button>
-</div>
-</div>
-
-
-    <!-- Flyers -->
-    <div class="bg-preto2 rounded-xl p-8 shadow-sm transition-all duration-300 hover:shadow-lg hover:border-red-600">
-  <p class="text-xl font-bold font-montserrat mb-4">Logotipos</p>
-  <p>Design de flyers impactantes para eventos, promoções e campanhas publicitárias.</p>
-
-  <div class="space-y-2 py-2">
-    <p class="flex items-center gap-2 ">
-      <svg xmlns="http://www.w3.org/2000/svg" class="text-amarelo h-5" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 6L9 17l-5-5"/></svg>
-      Logotipos Profissionais
-    </p>
-    <p class="flex items-center gap-2 ">
-      <svg xmlns="http://www.w3.org/2000/svg" class="text-amarelo h-5" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 6L9 17l-5-5"/></svg>
-      Manual da Marca
-    </p>
-    <p class="flex items-center gap-2 ">
-      <svg xmlns="http://www.w3.org/2000/svg" class="text-amarelo h-5" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 6L9 17l-5-5"/></svg>
-      Cores e Tipografia
-    </p>
-  </div>
-   <div class="flex items-center justify-center pt-4">
-  <button
-    class="text-amarelo text-sm border border-amarelo rounded-3xl px-4 py-2 
-           transition-all duration-300 
-           hover:bg-amarelo hover:text-preto
-           sm:px-5 sm:py-2 md:px-6 md:py-2.5 lg:px-8 lg:py-3" @click="irPara('/LogotiposProfissionais')">
-    Ver todos projectos
-  </button>
-</div>
-
-   </div>
+   <div class="bg-preto2 rounded-xl shadow-sm transition-all duration-300 hover:shadow-xl hover:shadow-amarelo hover:border-red-600 flex flex-col">
+      <div class="w-full">
+        <img src="/Edna.png" alt="" class="overflow-hidden rounded-lg w-full object-cover" />
+      </div>
+      <div class="p-8 flex flex-col flex-1 justify-between">
+        <div>
+          <p class="text-xl font-bold font-montserrat mb-4">Flyers & Banners</p>
+          <p>Design de flyers impactantes e banners profissionais para eventos, campanhas e promoções — criados para atrair olhares e gerar resultados.</p>
+        </div>
+        <div class="flex items-center justify-center pt-8">
+          <button
+            class="border border-amarelo text-amarelo rounded-3xl px-4 py-2 transition-all duration-300 hover:bg-amarelo hover:text-preto sm:px-5 sm:py-2 md:px-6 md:py-2.5 lg:px-8 lg:py-3 "
+            @click="irPara('/FlyersEventos')"
+          >
+            Ver todos projetos
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -139,69 +90,73 @@ function irPara(path) {
      <div class="p-6 md:p-10 xl:px-40">
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
+    <!-- Logotipos -->
+
+       <div class="bg-preto2 rounded-xl shadow-sm transition-all duration-300 hover:shadow-xl hover:shadow-amarelo hover:border-red-600 flex flex-col">
+      <div class="w-full">
+        <img src="/Edna.png" alt="" class="overflow-hidden rounded-lg w-full object-cover" />
+      </div>
+      <div class="p-8 flex flex-col flex-1 justify-between">
+        <div>
+          <p class="text-xl font-bold font-montserrat mb-4">Logotipos</p>
+          <p>Criação de logotipos originais e memoráveis que traduzem o posicionamento e a personalidade da sua marca com criatividade e estratégia.</p>
+        </div>
+        <div class="flex items-center justify-center pt-8">
+          <button
+            class="border border-amarelo text-amarelo rounded-3xl px-4 py-2 transition-all duration-300 hover:bg-amarelo hover:text-preto sm:px-5 sm:py-2 md:px-6 md:py-2.5 lg:px-8 lg:py-3 "
+            @click="irPara('/LogotiposProfissionais')"
+          >
+            Ver todos projetos
+          </button>
+        </div>
+      </div>
+    </div>
+
+
 
     <!-- Cartão de Visitas e Passes -->
-      <div class="bg-preto2 rounded-xl p-8 shadow-sm transition-all duration-300 hover:shadow-lg hover:border-red-600">
-  <p class="text-xl font-bold font-montserrat mb-4">Cartão de Visitas & Passes</p>
-  <p>Design de flyers impactantes para eventos, promoções e campanhas publicitárias.</p>
+ <div class="bg-preto2 rounded-xl shadow-sm transition-all duration-300 hover:shadow-xl hover:shadow-amarelo hover:border-red-600 flex flex-col">
+      <div class="w-full">
+        <img src="/Edna.png" alt="" class="overflow-hidden rounded-lg w-full object-cover" />
+      </div>
+      <div class="p-8 flex flex-col flex-1 justify-between">
+        <div>
+          <p class="text-xl font-bold font-montserrat mb-4">Cartão de Visitas & Passes</p>
+          <p>Design elegante e funcional de cartões de visita e passes personalizados, perfeitos para causar uma excelente primeira impressão.</p>
+        </div>
+        <div class="flex items-center justify-center pt-8">
+          <button
+            class="border border-amarelo text-amarelo rounded-3xl px-4 py-2 transition-all duration-300 hover:bg-amarelo hover:text-preto sm:px-5 sm:py-2 md:px-6 md:py-2.5 lg:px-8 lg:py-3 "
+            @click="irPara('/CartaodeVisita')"
+          >
+            Ver todos projetos
+          </button>
+        </div>
+      </div>
+    </div>
 
-  <div class="space-y-2 py-2">
-    <p class="flex items-center gap-2 ">
-      <svg xmlns="http://www.w3.org/2000/svg" class="text-amarelo h-5" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 6L9 17l-5-5"/></svg>
-      Logotipos Profissionais
-    </p>
-    <p class="flex items-center gap-2 ">
-      <svg xmlns="http://www.w3.org/2000/svg" class="text-amarelo h-5" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 6L9 17l-5-5"/></svg>
-      Manual da Marca
-    </p>
-    <p class="flex items-center gap-2 ">
-      <svg xmlns="http://www.w3.org/2000/svg" class="text-amarelo h-5" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 6L9 17l-5-5"/></svg>
-      Cores e Tipografia
-    </p>
-  </div>
-     <div class="flex items-center justify-center pt-4">
-  <button
-    class="text-amarelo text-sm border border-amarelo rounded-3xl px-4 py-2 
-           transition-all duration-300 
-           hover:bg-amarelo hover:text-preto
-           sm:px-5 sm:py-2 md:px-6 md:py-2.5 lg:px-8 lg:py-3" @click="irPara('/CartaodeVisita')">
-    Ver todos projectos
-  </button>
-</div>
-</div>
+    <!-- Site-->
+<div class="bg-preto2 rounded-xl shadow-sm transition-all duration-300 hover:shadow-xl hover:shadow-amarelo hover:border-red-600 flex flex-col">
+      <div class="w-full">
+        <img src="/Edna.png" alt="" class="overflow-hidden rounded-lg w-full object-cover" />
+      </div>
+      <div class="p-8 flex flex-col flex-1 justify-between">
+        <div>
+          <p class="text-xl font-bold font-montserrat mb-4">Criação de Sites</p>
+          <p>Desenvolvimento de websites modernos, responsivos e otimizados — projetados para destacar a sua marca e oferecer uma experiência envolvente ao utilizador.</p>
+        </div>
+        <div class="flex items-center justify-center pt-8">
+          <button
+            class="border border-amarelo text-amarelo rounded-3xl px-4 py-2 transition-all duration-300 hover:bg-amarelo hover:text-preto sm:px-5 sm:py-2 md:px-6 md:py-2.5 lg:px-8 lg:py-3 "
+            @click="irPara('/CriacaoSites')"
+          >
+            Ver todos projetos
+          </button>
+        </div>
+      </div>
+    </div>
 
-
-    <!-- Criação de Sites-->
-  <div class="bg-preto2 rounded-xl p-8 shadow-sm transition-all duration-300 hover:shadow-lg hover:border-red-600">
-  <p class="text-xl font-bold font-montserrat mb-4">Criação de Sites</p>
-  <p>Design de flyers impactantes para eventos, promoções e campanhas publicitárias.</p>
-
-  <div class="space-y-2 py-2">
-    <p class="flex items-center gap-2 ">
-      <svg xmlns="http://www.w3.org/2000/svg" class="text-amarelo h-5" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 6L9 17l-5-5"/></svg>
-      Logotipos Profissionais
-    </p>
-    <p class="flex items-center gap-2 ">
-      <svg xmlns="http://www.w3.org/2000/svg" class="text-amarelo h-5" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 6L9 17l-5-5"/></svg>
-      Manual da Marca
-    </p>
-    <p class="flex items-center gap-2 ">
-      <svg xmlns="http://www.w3.org/2000/svg" class="text-amarelo h-5" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 6L9 17l-5-5"/></svg>
-      Cores e Tipografia
-    </p>
-  </div>
-     <div class="flex items-center justify-center pt-4">
-  <button
-    class="text-amarelo text-sm border border-amarelo rounded-3xl px-4 py-2 
-           transition-all duration-300 
-           hover:bg-amarelo hover:text-preto
-           sm:px-5 sm:py-2 md:px-6 md:py-2.5 lg:px-8 lg:py-3" @click="irPara('/CriacaoSites')">
-    Ver todos projectos
-  </button>
-</div>
-</div>
-
-
+ 
 
 
   </div>
