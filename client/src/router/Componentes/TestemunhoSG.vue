@@ -1,10 +1,23 @@
 <script setup>
 import { useRouter } from 'vue-router';
+import api from '@/Request';
+import { ref, onMounted } from "vue";
 const router = useRouter() // Instancia do roteador
-import { ref } from "vue";
+const testemunhos = ref([]);
 
+onMounted(() => {
+  fetchTestemunhos();
+});
 
-
+async function fetchTestemunhos() {
+  try {
+    const response = await api.get('/comments/Listar');
+    testemunhos.value = response.data;
+    console.log("Testemunhos carregados:", testemunhos.value);
+  } catch (error) {
+    console.error("Erro ao buscar testemunhos:", error);
+  }
+}
 
 function irPara(path) {
   router.push(path)
@@ -22,50 +35,20 @@ function irPara(path) {
     <div>
       <div class="overflow-x-auto">
         <div class="flex space-x-6 p-4 md:justify-center">
-          <!-- Card 1 -->
-          <div class="bg-preto2 h-40 min-w-[250px] rounded-xl shadow-md p-4">
+             <!-- Testemunho 3 -->
+
+          <div class="bg-preto2 h-40 min-w-[250px] rounded-xl shadow-md p-4" v-for="Testemunho in testemunhos">
             <div class="flex space-x-2">
               <div class="h-12 w-12 bg-amarelo rounded-3xl overflow-hidden">
-                <img src="/Makuka.jpg" class="object-cover" alt="" />
+                <img :src="Testemunho.userPhotoUrl" class="object-cover" alt="Foto do comentador" />
               </div>
               <div class="flex flex-col">
-                <span class="font-bold font-montserrat">Victor Makuka</span>
-                <span class="text-sm font-light font-montserrat text-amarelo">Programador</span>
+                <span class="font-bold font-montserrat">{{ Testemunho.userName }}</span>
+                <span class="text-sm font-light font-montserrat text-amarelo">Programmer</span>
               </div>
             </div>
 
-            <p class="py-6">"Qualidade excepcional e atenção aos detalhes!"</p>
-          </div>
-
-          <!-- Testemunho 2 -->
-          <div class="bg-preto2 h-40 min-w-[250px] rounded-xl shadow-md p-4">
-            <div class="flex space-x-2">
-              <div class="h-12 w-12 bg-amarelo rounded-3xl overflow-hidden">
-                <img src="/Makuka.jpg" class="object-cover" alt="" />
-              </div>
-              <div class="flex flex-col">
-                <span class="font-bold font-montserrat">Séfora Zípora</span>
-                <span class="text-sm font-light font-montserrat text-amarelo">Analista</span>
-              </div>
-            </div>
-
-            <p class="py-6">"Seus designs transformaram nossa imagem de marca!"</p>
-          </div>
-
-          <!-- Testemunho 3 -->
-
-          <div class="bg-preto2 h-40 min-w-[250px] rounded-xl shadow-md p-4">
-            <div class="flex space-x-2">
-              <div class="h-12 w-12 bg-amarelo rounded-3xl overflow-hidden">
-                <img src="/Makuka.jpg" class="object-cover" alt="" />
-              </div>
-              <div class="flex flex-col">
-                <span class="font-bold font-montserrat">Edvaldo Dantas</span>
-                <span class="text-sm font-light font-montserrat text-amarelo">Programador</span>
-              </div>
-            </div>
-
-            <p class="py-6">"O trabalho deles superou nossas expectativas!"</p>
+            <p class="py-6">"{{ Testemunho.content }}"</p>
           </div>
         </div>
       </div>

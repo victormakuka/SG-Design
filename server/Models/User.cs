@@ -6,17 +6,22 @@ namespace server.Models
     {
         [Key]
         public Guid Id { get; set; }
+
+        [Required]
         public string Name { get; set; } = string.Empty;
 
         [Required, EmailAddress]
         public string Email { get; set; } = string.Empty;
-        
-        public string? Profission { get; set; }
+
+        public string? Profission { get; set; } 
 
         public string PhotoUrl { get; set; } = string.Empty;
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
-        public List<Comment> Comments { get; set; } = new();
+        // Relações
+        public ICollection<Comment> Comments { get; set; } = new List<Comment>();
+        public ICollection<CommentLike> CommentLikes { get; set; } = new List<CommentLike>();
     }
+
 }

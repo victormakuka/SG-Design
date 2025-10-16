@@ -56,4 +56,6 @@ app.MapGet("/", () => "Hello World!");
 
 app.MapUserAuth();
 
+app.MapComments();
+
 app.Run();
