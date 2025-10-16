@@ -1,10 +1,8 @@
 ﻿using AuthLibrary.Services;
 using Google;
 using Google.Apis.Auth;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using server.Data;
-using server.DTOs;
 using server.Models;
 
 namespace server.Endpoints
@@ -13,7 +11,8 @@ namespace server.Endpoints
     {
         public static IEndpointRouteBuilder MapUserAuth(this IEndpointRouteBuilder app)
         {
-            app.MapPost("/google", async (DataContext context,ITokenService tokenService,[FromBody] GoogleLoginRequest model) => {
+            app.MapPost("/google", async (DataContext context, ITokenService tokenService, string IdToken) =>
+            {
 
                 try
                 {
@@ -22,17 +21,26 @@ namespace server.Endpoints
                         Audience = new[] { "353535077307-nqv0s4rge8nh5d3a9eklcoacdijk61hf.apps.googleusercontent.com" }
                     };
 
-                    var payload = await GoogleJsonWebSignature.ValidateAsync(model.IdToken, settings);
+                    var payload = await GoogleJsonWebSignature.ValidateAsync(IdToken, settings);
 
                     var user = await context.Users.FirstOrDefaultAsync(u => u.Email == payload.Email);
 
-                    if(user is null)
+                    if (user is null)
+                    {
                         user = new User
                         {
                             Email = payload.Email,
                             Name = payload.Name,
                             PhotoUrl = payload.Picture,
                         };
+                        await context.Users.AddAsync(user);
+                    }
+                    else
+                    {
+                        user.Name = payload.Name;
+                        user.PhotoUrl = payload.Picture;
+                        context.Users.Update(user);
+                    }
 
                     await context.SaveChangesAsync();
 
@@ -49,26 +57,11 @@ namespace server.Endpoints
                     return Results.BadRequest("Erro interno do servidor");
                 }
 
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     Console.WriteLine("Ocorreu uma exceção ao fazer o login com google" + ex.Message);
                     return Results.BadRequest("Erro interno do servidor");
                 }
-            });
-
-            app.MapPost("/create-me", async (DataContext context) =>
-            {
-                await context.Users.AddAsync(new User
-                {
-                    Email = "edvaldo@gmail.com",
-                    Name = "Edvaldo",
-                    PhotoUrl = "Mau",
-                    Profission = "Programmer"
-                });
-
-                await context.SaveChangesAsync();
-
-                return Results.Ok("Duro criado");
             });
 
             return app;

@@ -3,13 +3,14 @@ import GoogleAuth from './GoogleAuth.vue';
 import { useRouter } from 'vue-router';
 const router = useRouter() // Instancia do roteador
 ;  
-
+import GoogleComponentTest from './GoogleComponentTest.vue';
 function irPara(path) {
   router.push(path)
 }
 </script>
 <template>
-  <GoogleAuth />
+  <GoogleComponentTest />
+  <!-- <GoogleAuth /> -->
   
   <!-- Footer -->
   <section

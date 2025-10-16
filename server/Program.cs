@@ -29,6 +29,8 @@ builder.Services.AddDbContext<DataContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found."))
 );
 
+builder.Services.AddHttpClient();
+
 var app = builder.Build();
 
 if(app.Environment.IsDevelopment())

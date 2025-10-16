@@ -23,20 +23,52 @@ const googleReady = ref(false);
 const router = useRouter();
 let sdkScript = null;
 let tokenClient = null;
+let codeClient = null;
 let promptInProgress = false;
+
+// novos refs/variáveis para gerenciar id/access token e sincronização
+const lastIdToken = ref(null);
+const lastAccessToken = ref(null);
+let _idResolve = null;
+let _idReject = null;
+
+function waitForIdToken(timeout = 8000) {
+  if (lastIdToken.value) return Promise.resolve(lastIdToken.value);
+  return new Promise((resolve, reject) => {
+    _idResolve = resolve;
+    _idReject = reject;
+    setTimeout(() => {
+      _idResolve = null;
+      _idReject = null;
+      reject(new Error("timeout waiting for id_token"));
+    }, timeout);
+  });
+}
 
 // Recebe o ID Token (One Tap / prompt)
 function handleCredentialResponse(response) {
   const idToken = response?.credential;
   console.log("ID Token do Google:", idToken);
-  // Envie ao backend quando disponível:
+  lastIdToken.value = idToken;
+  if (_idResolve) {
+    _idResolve(idToken);
+    _idResolve = null;
+    _idReject = null;
+  }
+  // Exemplo: enviar ao backend
   // axios.post("/auth/google", { id_token: idToken }).then(...).catch(...);
 }
 
 // Callback para quando se obtiver um access token via oauth2.initTokenClient (fallback popup)
 function handleAccessTokenResponse(tokenResponse) {
   console.log("Resposta OAuth (access token):", tokenResponse);
-  // Se precisar do id_token via fluxo de servidor, use initCodeClient + troca no backend.
+  lastAccessToken.value = tokenResponse?.access_token ?? null;
+
+  // Se você já tem id_token (via One Tap), pode enviar ambos ao backend:
+  // axios.post("/auth/google", { id_token: lastIdToken.value, access_token: lastAccessToken.value }).then(...)
+
+  // Se preferir usar fluxo de código (recomendado para trocar no servidor e obter id_token seguro),
+  // use initCodeClient e envie o code para o backend para troca.
 }
 
 // Inicializa Google Identity Services e (opcional) Token Client para fallback popup
@@ -66,6 +98,32 @@ function initializeGoogleLogin() {
       // tokenClient pode não existir em todos os ambientes
       console.info("tokenClient não disponível:", e);
       tokenClient = null;
+    }
+
+    try {
+      if (window.google.accounts.oauth2 && window.google.accounts.oauth2.initCodeClient) {
+        codeClient = window.google.accounts.oauth2.initCodeClient({
+          client_id: CLIENT_ID,
+          scope: "openid email profile",
+          ux_mode: "popup",
+          callback: (resp) => {
+            // resp.code -> envie isso ao backend para trocar por tokens (inclui id_token)
+            console.log("authorization code recebido:", resp?.code);
+            // Exemplo mínimo: enviar ao backend
+            fetch("/auth/google/code", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ code: resp?.code }),
+            }).then(r => r.json()).then(data => {
+              console.log("tokens do backend:", data);
+              // data deve incluir id_token (JWT) e access_token conforme exchange no servidor
+            }).catch(e => console.error("erro enviando code ao backend:", e));
+          },
+        });
+      }
+    } catch (e) {
+      console.info("codeClient não disponível:", e);
+      codeClient = null;
     }
 
     googleReady.value = true;
@@ -135,29 +193,53 @@ function renderFallbackButton() {
 
 // Ação principal do botão: tenta prompt; se não disponível, usa tokenClient (popup) ou renderButton fallback
 async function onPrimaryClick() {
-  if (!googleReady.value) {
-    console.warn("Google SDK ainda não pronto.");
-    return;
-  }
+  if (!googleReady.value) return;
 
-  // tenta prompt primeiro
-  try {
-    await callPromptWithListener();
-  } catch (e) {
-    console.debug("callPromptWithListener rejeitado:", e);
-  }
+  // tenta prompt (pode entregar id_token via One Tap)
+  callPromptWithListener();
 
-  // se prompt não apresentou credencial e tokenClient está disponível, abrir popup como alternativa
-  // (isso requer consentimento do usuário e oferece access_token, não id_token automaticamente)
-  if (!promptInProgress && !tokenClient) {
-    // se tokenClient não existe, mostra botão fallback para interação manual
-    renderFallbackButton();
-  } else if (!promptInProgress && tokenClient) {
-    // solicitar access token via popup como alternativa (requer interação explícita)
+  // se você precisa do id_token no backend de forma confiável, solicite o authorization code
+  // dentro do clique do usuário para evitar bloqueio de popup
+  if (codeClient) {
     try {
-      tokenClient.requestAccessToken({ prompt: "" });
+      codeClient.requestCode(); // abrirá popup e callback acima receberá resp.code
+      return;
     } catch (e) {
-      console.warn("Falha ao solicitar access token via tokenClient:", e);
+      console.warn("Falha ao abrir popup de code (provavelmente bloqueado):", e);
+      renderFallbackButton();
+      return;
+    }
+  }
+
+  // fallback: se não tiver codeClient, tentar tokenClient (retorna access_token apenas)
+  if (tokenClient) {
+    try {
+      tokenClient.requestAccessToken({ prompt: "consent" });
+      return;
+    } catch (e) {
+      console.warn("Falha ao abrir popup de token:", e);
+      renderFallbackButton();
+      return;
+    }
+  }
+
+  // Se não há tokenClient disponível, aguardamos um curto período pelo id_token vindo do prompt
+  try {
+    const id = await waitForIdToken(5000);
+    console.log("id_token obtido após prompt:", !!id);
+    // envie id ao backend: axios.post("/auth/google", { id_token: id })
+  } catch (err) {
+    console.warn("Não foi obtido id_token pelo prompt. Usando botão de fallback / fluxo de código.", err);
+    // Abre fluxo de authorization code também precisa ser chamado direto no clique.
+    try {
+      if (window.google.accounts.oauth2 && window.google.accounts.oauth2.initCodeClient) {
+        // inicializa um button de fallback para user gesture — evitar chamar requestCode() aqui se já passou o gesto
+        renderFallbackButton();
+      } else {
+        renderFallbackButton();
+      }
+    } catch (e) {
+      console.error("Erro ao preparar fallback:", e);
       renderFallbackButton();
     }
   }
@@ -194,6 +276,11 @@ onMounted(async () => {
 
 onBeforeUnmount(() => {
   if (sdkScript && sdkScript.parentNode) sdkScript.parentNode.removeChild(sdkScript);
+  if (_idReject) {
+    _idReject(new Error("component unmounted"));
+    _idResolve = null;
+    _idReject = null;
+  }
 });
 </script>
 
